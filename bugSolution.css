@@ -1,0 +1,32 @@
+Instead of relying solely on `:nth-child`, we can use JavaScript to dynamically add or remove classes. This allows for precise control over styling based on the current state of the DOM.
+
+```javascript
+function updateStyling() {
+  const elements = document.querySelectorAll('.my-element');
+  elements.forEach((element, index) => {
+    if ((index + 1) % 2 === 0) {
+      element.classList.add('even');
+      element.classList.remove('odd');
+    } else {
+      element.classList.add('odd');
+      element.classList.remove('even');
+    }
+  });
+}
+
+// Call updateStyling initially and whenever the DOM is updated
+updateStyling();
+// Example: Add an event listener to handle DOM changes
+document.addEventListener('DOMSubtreeModified', updateStyling);
+```
+
+```css
+/* bugSolution.css */
+.odd {
+  background-color: lightblue;
+}
+
+.even {
+  background-color: lightcoral;
+}
+```
